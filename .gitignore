@@ -1,0 +1,4 @@
+﻿*.env
+credentials.env
+app.config
+*.config
