@@ -1,8 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using InstagramWebScrape.Database;
 using InstagramWebScrape.Instagram;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
 
 Database insta_user_db = new();
@@ -43,7 +41,8 @@ else if (option_choice == "3")
 	string base_url = $"https://www.instagram.com/{user_choice}";
 
 	Instagram instagram = new(base_url);
-	instagram.Images();
+	//instagram.Images();
+	instagram.FindImages();
 	Thread.Sleep(3000);
 }
 else if (option_choice == "4")

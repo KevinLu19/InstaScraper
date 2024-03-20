@@ -17,13 +17,16 @@ internal class Database
     // ** Remove this conn strign when deploying. **
     private string _conn_string = "";
 
-    public Database()
+	public Database()
     {
         // Connect to the mysql database.
         string db_username = Environment.GetEnvironmentVariable("DATABASE_USERNAME");
         string db_password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD");
 
-		MySqlConnection conn = new MySqlConnection(_conn_string);
+        Console.WriteLine($"{db_username}");
+        Console.WriteLine($"{db_password}");
+
+        MySqlConnection conn = new MySqlConnection(_conn_string);
         _connection = conn;
 
         // Test connect to the database.
@@ -121,8 +124,7 @@ internal class Database
 
         // Print everything from table.
 		using (MySqlDataReader reader = print_user.ExecuteReader())
-        {
-			Console.WriteLine("Printing every name from table.");
+        { 
 			while (reader.Read())
             {
                 Console.WriteLine(reader["Name"]);
