@@ -128,32 +128,24 @@ internal class Instagram
     // Does the work of retreiving image src link.
     public void FindImgSrc(List<string> list_img)
     {
-		// Used to verify if the arrow button exists in the current post that driver is nagivating to.
-		//var arrow_btn_verification = _driver.FindElement(By.XPath("//button[@class=' _afxv _al46 _al47']"));
-		//var check_btn = _driver.FindElement(By.XPath("//button[@class=' _afxv _al46 _al47']")).Displayed;
-
 		_driver.SwitchTo().NewWindow(WindowType.Tab);
 
 		foreach (var item in list_img)
         {
             _driver.Navigate().GoToUrl(item);
-            // Find the img src and then check if arrow button exists.
 
-            // Need to also fix where is one post have multiple pictures, do not navigate to another post until all images are taken.
-            // In order to get reel url, just get selenium's tab url.
-
-            // If arrow exists, then it is a multi image post
-            // If mute button exists, then its a reel
-            // Else then it is a single post.
+            Thread.Sleep(5000);
 
             var video_reel = FindElementIfExists(_driver, By.XPath("//video[@class='x1lliihq x5yr21d xh8yej3']"));
-			
+            
             if (video_reel != null)
-			{
+            {
                 Console.WriteLine("-------");
                 Console.WriteLine(_driver.Url);
-				Console.WriteLine("-------");
-			}
+                Console.WriteLine( "Printing SRC");
+                Console.WriteLine(video_reel.GetAttribute("src"));
+                Console.WriteLine("-------");
+            }
 
 			var arrow_btn = FindElementIfExists(_driver, By.XPath("//div[@class=' _9zm2']"));
 
